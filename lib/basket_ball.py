@@ -182,3 +182,77 @@ def game_dict():
             ]
         }
     }
+
+
+bball_info = game_dict()
+home = bball_info["home"]
+away = bball_info["away"]
+homeplayers = bball_info["home"]["players"]
+awayplayers = bball_info["away"]["players"]
+
+def num_points_per_game(playername):
+    
+    for player in bball_info["home"]["players"]:
+        if player["name"] == playername:
+            return player["points_per_game"]       
+    for player in bball_info["away"]["players"]:
+        if player["name"] == playername:
+            return player["points_per_game"]   
+
+def player_age(playername):
+    
+    for player in bball_info["home"]["players"]:
+        if player["name"] == playername:
+            return player["age"]        
+    for player in bball_info["away"]["players"]:
+        if player["name"] == playername:
+            return player["age"]
+
+def team_colors(teamname):
+ 
+    if home["team_name"] == teamname:
+        return home["colors"]
+    elif away["team_name"] == teamname:
+        return away["colors"]
+    else:
+        return "No team found"
+
+def team_names():
+    all_team_names = []
+    for key in bball_info:
+        all_team_names.append(bball_info[key]["team_name"])
+    return all_team_names
+
+def player_numbers(teamname):
+    all_numbers = []
+    for player in homeplayers:
+        if home["team_name"] == teamname:
+            all_numbers.append(player["number"])
+    for player in awayplayers:
+        if away["team_name"] == teamname:
+            all_numbers.append(player["number"])
+    return all_numbers
+
+
+def player_stats(playername):
+    playerstats = {}
+    for player in homeplayers:
+        if player["name"] == playername:
+            playerstats.update(player)
+    for player in awayplayers:
+        if player["name"] == playername:
+            playerstats.update(player)
+    return playerstats
+
+def average_rebounds_by_shoe_brand():
+    pass
+
+
+print(player_stats("Kevin Love"))
+
+
+
+
+
+
+
